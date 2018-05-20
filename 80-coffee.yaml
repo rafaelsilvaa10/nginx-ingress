@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: dotzback-rc
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: dotzback
+    spec:
+      containers:
+      - name: dotzback
+        image: nginxdemos/hello
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dotzback-svc
+  labels:
+    app: dotzback
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    name: http
+  selector:
+    app: dotzback

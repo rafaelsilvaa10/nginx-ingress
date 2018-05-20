@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: dotzfront-ingress-nginx
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: dotzfront.dotzexemplo.com
+    http:
+      paths:
+      - path: /dotzfront
+        backend:
+          serviceName: dotzfront-svc
+          servicePort: 80
+      - path: /
+        backend:
+          serviceName: dotzfront-svc
+          servicePort: 80
+
