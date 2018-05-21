@@ -1,0 +1,13 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: dotzback-rc-hpa
+spec:
+  maxReplicas: 8
+  minReplicas: 3
+  scaleTargetRef:
+    apiVersion: v1
+    kind: Deployment
+    name: dotzback-rc
+  targetCPUUtilizationPercentage: 30
+
